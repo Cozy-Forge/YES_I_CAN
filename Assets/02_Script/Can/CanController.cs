@@ -7,9 +7,11 @@ public class CanController : MonoBehaviour
     Rigidbody rb;
     [SerializeField]
     private float ForcePower = 10;
+    [SerializeField] private Camera cam;
 
     void Awake()
     {
+        cam = Camera.main;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -17,8 +19,10 @@ public class CanController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Vector3 forwardDirection = transform.forward; 
-            rb.AddForce(forwardDirection * ForcePower, ForceMode.Impulse); 
+            Vector3 forwardDirection = cam.transform.forward;
+            rb.AddForce(forwardDirection * ForcePower, ForceMode.VelocityChange);
+
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, 7);
         }
     }
 }
