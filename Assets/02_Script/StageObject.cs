@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class StageObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private string sceneName;
+    public string SceneName => sceneName;
+
+    [SerializeField] private float remainTime = 0;
+    public float RemainTime
     {
-        
+        get { return remainTime; }
+        set { remainTime = value; }
     }
 
-    // Update is called once per frame
-    void Update()
+    Transform outline;
+
+    private void Start()
     {
-        
+        outline = transform.GetChild(0);
+    }
+
+    private void Update()
+    {
+        if (remainTime >= 0)
+        {
+            remainTime -= Time.deltaTime;
+        }
+        outline.gameObject.SetActive(remainTime >= 0);
     }
 }

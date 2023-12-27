@@ -1,14 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+
 
 public class StageSelectPlayer : MonoBehaviour
 {
-    Camera _mainCam;
-
+    private Camera _mainCam;
     private float _xRotate, _yRotate;
-    public float _rotateSpeed = 500.0f;
+
+    [SerializeField] private float _rotateSpeed = 500.0f;
+    [SerializeField] private float _speed = 5f;
 
     private void Awake()
     {
@@ -17,23 +21,47 @@ public class StageSelectPlayer : MonoBehaviour
 
     private void Update()
     {
-        // 이동
+        Move();
+        Rotate();
+        Check();
+    }
+
+    private void Check()
+    {
+        RaycastHit hitInfo;
+        if (Physics.Raycast(_mainCam.transform.position, _mainCam.transform.forward, out hitInfo, _mainCam.farClipPlane, 1 << 10))
+        {
+            if (hitInfo.transform.TryGetComponent<StageObject>(out StageObject so))
+            {
+                so.RemainTime = 0.5f;
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    Debug.Log(so.name);
+                    //SceneManager.LoadScene(so.SceneName);
+                }
+            }
+        }
+    }
+
+    private void Move()
+    {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        transform.position += (_mainCam.transform.right * h + _mainCam.transform.forward * v).normalized * Time.deltaTime;
+        transform.position += (_mainCam.transform.right * h + _mainCam.transform.forward * v).normalized * Time.deltaTime * _speed;
+    }
 
-
-        // 회전
+    private void Rotate()
+    {
         float x = -Input.GetAxis("Mouse Y") * Time.deltaTime * _rotateSpeed;
         float y = Input.GetAxis("Mouse X") * Time.deltaTime * _rotateSpeed;
 
-        _yRotate = transform.eulerAngles.y + y;
-        //xRotate = transform.eulerAngles.x + xRotateMove; 
+        _yRotate = _mainCam.transform.eulerAngles.y + y;
+
         _xRotate = _xRotate + x;
 
-        _xRotate = Mathf.Clamp(_xRotate, -90, 90); // 위, 아래 고정
+        _xRotate = Mathf.Clamp(_xRotate, -90, 90);
 
-        transform.eulerAngles = new Vector3(_xRotate, _yRotate, 0);
+        _mainCam.transform.eulerAngles = new Vector3(_xRotate, _yRotate, 0);
     }
 }
