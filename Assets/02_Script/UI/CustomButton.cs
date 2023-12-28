@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -23,6 +24,8 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private float percent = 0;
     private bool isHover;
 
+    public event Action OnButtonClickEvent;
+
     private void Awake()
     {
 
@@ -34,6 +37,7 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
 
         clickEvent?.Invoke();
+        OnButtonClickEvent?.Invoke();
 
     }
 
