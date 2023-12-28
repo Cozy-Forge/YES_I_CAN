@@ -17,6 +17,7 @@ public class StageSelectPlayer : MonoBehaviour
     private void Awake()
     {
         _mainCam = Camera.main;
+        transform.rotation = Quaternion.identity;
     }
 
     private void Update()
@@ -33,11 +34,11 @@ public class StageSelectPlayer : MonoBehaviour
         {
             if (hitInfo.transform.TryGetComponent<StageObject>(out StageObject so))
             {
-                so.RemainTime = 0.5f;
+                so.RemainTime = 0.3f;
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     Debug.Log(so.name);
-                    //SceneManager.LoadScene(so.SceneName);
+                    SceneManager.LoadScene(so.SceneName);
                 }
             }
         }
