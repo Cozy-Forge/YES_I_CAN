@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using TMPro;
+using Cinemachine;
 
 public class IntroSceneUIController : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class IntroSceneUIController : MonoBehaviour
     [SerializeField] private Transform optionButtonRoot;
     [SerializeField] private Transform optionExitButton;
     [SerializeField] private Transform optionVoluemPanel;
+
+    [Space]
+    [Header("PlayUI")]
+    [SerializeField] private GameObject _selectUI;
+
+    [SerializeField] private CinemachineVirtualCamera _vCam2;
 
     private bool isControlled;
 
@@ -175,6 +182,8 @@ public class IntroSceneUIController : MonoBehaviour
 
         }
 
+        _vCam2.Priority = 11;
+        _selectUI.SetActive(true);
 
     }
 

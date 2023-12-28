@@ -25,9 +25,12 @@ public class StageSelectPlayer : MonoBehaviour
 
     private void Update()
     {
-        Move();
-        Rotate();
-        Check();
+        if (_cam.Priority >= 11)
+        {
+            Move();
+            Rotate();
+            Check();
+        }
     }
 
     private void Check()
@@ -36,7 +39,7 @@ public class StageSelectPlayer : MonoBehaviour
         bool isHit = Physics.Raycast(_cam.transform.position, _cam.transform.forward, out hitInfo, 3 /*_mainCam.farClipPlane*/, 1 << 10);
 
         _tooltip.SetActive(isHit);
-        if (isHit)  
+        if (isHit)
         {
             if (hitInfo.transform.TryGetComponent<StageObject>(out StageObject so))
             {
@@ -56,7 +59,7 @@ public class StageSelectPlayer : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
 
         //transform.position += (_mainCam.transform.right * h + _mainCam.transform.forward * v).normalized * Time.deltaTime * _speed;
-        _rigid.velocity = ( _cam.transform.right * h + _cam.transform.forward * v);
+        _rigid.velocity = (_cam.transform.right * h + _cam.transform.forward * v);
         _rigid.velocity = new Vector3(_rigid.velocity.x, 0, _rigid.velocity.z).normalized * _speed;
     }
 
