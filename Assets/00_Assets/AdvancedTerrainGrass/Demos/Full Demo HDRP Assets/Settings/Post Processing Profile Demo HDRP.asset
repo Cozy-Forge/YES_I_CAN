@@ -228,7 +228,7 @@ MonoBehaviour:
     m_Value: 0.1
   m_SampleCount:
     m_OverrideState: 1
-    m_Value: 8
+    m_Value: 10
 --- !u!114 &-1545711930608000245
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -669,6 +669,9 @@ MonoBehaviour:
     m_Value:
       serializedVersion: 2
       m_Bits: 4294967295
+  specularOcclusion:
+    m_OverrideState: 0
+    m_Value: 0.5
   occluderMotionRejection:
     m_OverrideState: 0
     m_Value: 1

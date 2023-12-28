@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 0.9019608}
+  m_Color: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0.9019608}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -172,6 +172,9 @@ MonoBehaviour:
   originSize: {x: 1, y: 1, z: 1}
   hoverSize: {x: 1, y: 1, z: 1}
   hoveringSpeed: 5
+  clickEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9189317568473414042
 GameObject:
   m_ObjectHideFlags: 0
