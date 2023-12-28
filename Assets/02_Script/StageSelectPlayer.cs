@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
-
+using Cinemachine;
 
 public class StageSelectPlayer : MonoBehaviour
 {
-    private Camera _mainCam;
+    [SerializeField] private CinemachineVirtualCamera _cam;
     private Rigidbody _rigid;
     private float _xRotate, _yRotate;
 
@@ -19,9 +19,8 @@ public class StageSelectPlayer : MonoBehaviour
 
     private void Awake()
     {
-        _mainCam = Camera.main;
         _rigid = GetComponent<Rigidbody>();
-        _mainCam.transform.rotation = Quaternion.identity;
+        _cam.transform.rotation = Quaternion.identity;
     }
 
     private void Update()
@@ -34,7 +33,7 @@ public class StageSelectPlayer : MonoBehaviour
     private void Check()
     {
         RaycastHit hitInfo;
-        bool isHit = Physics.Raycast(_mainCam.transform.position, _mainCam.transform.forward, out hitInfo, 3 /*_mainCam.farClipPlane*/, 1 << 10);
+        bool isHit = Physics.Raycast(_cam.transform.position, _cam.transform.forward, out hitInfo, 3 /*_mainCam.farClipPlane*/, 1 << 10);
 
         _tooltip.SetActive(isHit);
         if (isHit)  
@@ -57,7 +56,7 @@ public class StageSelectPlayer : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
 
         //transform.position += (_mainCam.transform.right * h + _mainCam.transform.forward * v).normalized * Time.deltaTime * _speed;
-        _rigid.velocity = (_mainCam.transform.right * h + _mainCam.transform.forward * v);
+        _rigid.velocity = ( _cam.transform.right * h + _cam.transform.forward * v);
         _rigid.velocity = new Vector3(_rigid.velocity.x, 0, _rigid.velocity.z).normalized * _speed;
     }
 
@@ -66,12 +65,12 @@ public class StageSelectPlayer : MonoBehaviour
         float x = -Input.GetAxis("Mouse Y") * Time.deltaTime * _rotateSpeed;
         float y = Input.GetAxis("Mouse X") * Time.deltaTime * _rotateSpeed;
 
-        _yRotate = _mainCam.transform.eulerAngles.y + y;
+        _yRotate = _cam.transform.eulerAngles.y + y;
 
         _xRotate = _xRotate + x;
 
         _xRotate = Mathf.Clamp(_xRotate, -90, 90);
 
-        _mainCam.transform.eulerAngles = new Vector3(_xRotate, _yRotate, 0);
+        _cam.transform.eulerAngles = new Vector3(_xRotate, _yRotate, 0);
     }
 }
