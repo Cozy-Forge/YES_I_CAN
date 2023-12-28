@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CanController : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class CanController : MonoBehaviour
     [SerializeField]
     private float ForcePower = 10;
     [SerializeField] private Camera cam;
+    public float JumpCool;
 
     void Awake()
     {
@@ -17,12 +20,18 @@ public class CanController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && JumpCool >=2)
         {
-            Vector3 forwardDirection = cam.transform.forward;
+            Vector3 forwardDirection = cam.transform.forward + Vector3.up;
             rb.AddForce(forwardDirection * ForcePower, ForceMode.VelocityChange);
 
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, 10);
+            JumpCool = 0;
         }
+
+        JumpCool += Time.deltaTime;
+
     }
+
+
 }
