@@ -22,7 +22,7 @@ public class CanController : MonoBehaviour
             Vector3 forwardDirection = cam.transform.forward;
             rb.AddForce(forwardDirection * ForcePower, ForceMode.VelocityChange);
 
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, 7);
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, 10);
         }
     }
 }
