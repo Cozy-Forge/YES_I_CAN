@@ -11,6 +11,8 @@ public class CanController : MonoBehaviour
     private float ForcePower = 10;
     [SerializeField] private Camera cam;
     public float JumpCool;
+    public GameObject JumpEffect;
+    public Transform EffectPos;
 
     void Awake()
     {
@@ -27,6 +29,7 @@ public class CanController : MonoBehaviour
 
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, 10);
             JumpCool = 0;
+            Instantiate(JumpEffect, EffectPos.position, Quaternion.identity);
         }
 
         JumpCool += Time.deltaTime;
