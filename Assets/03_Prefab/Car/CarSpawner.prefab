@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b10a12ea4916094993daf094b8038ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _car: {fileID: 6833417408144098524, guid: 717e8f4388e9db74aae0ccec970a45ae, type: 3}
+  _car: {fileID: 6959612973435349642, guid: 717e8f4388e9db74aae0ccec970a45ae, type: 3}
   _dir: {x: 1, y: 0, z: 0}
-  _carSpeed: 30
+  _carSpeed: 1500
   _carDeleteTime: 5
   _carSpawnDelay: 2
+  _frontIsRight: 0

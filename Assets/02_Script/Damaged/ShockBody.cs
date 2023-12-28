@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Car : MonoBehaviour
+public class ShockBody : MonoBehaviour
 {
-    private int _carDamage = 30;
+    [SerializeField]
+    private int _damage = 30;
+
+    [SerializeField]
     private float _power = 20;
 
     private void OnCollisionEnter(Collision col)
     {
         if (col.transform.TryGetComponent<PlayerPollutionDegree>(out PlayerPollutionDegree pPollutionDegree))
         {
-            pPollutionDegree.TakeDamage(_carDamage);
+            pPollutionDegree.TakeDamage(_damage);
         }
 
         // ³Ë¹é
@@ -19,7 +22,7 @@ public class Car : MonoBehaviour
         {
             Vector3 dir = (col.transform.position - transform.position).normalized;
 
-            rb.AddForce(dir * 20, ForceMode.Impulse);
+            rb.AddForce(dir * _power, ForceMode.Impulse);
         }
     }
 }
