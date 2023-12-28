@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class StageSelectPlayer : MonoBehaviour
 {
     private Camera _mainCam;
+    private Rigidbody _rigid;
     private float _xRotate, _yRotate;
 
     [SerializeField] private float _rotateSpeed = 500.0f;
@@ -17,6 +18,7 @@ public class StageSelectPlayer : MonoBehaviour
     private void Awake()
     {
         _mainCam = Camera.main;
+        _rigid = GetComponent<Rigidbody>();
         _mainCam.transform.rotation = Quaternion.identity;
     }
 
@@ -49,7 +51,9 @@ public class StageSelectPlayer : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        transform.position += (_mainCam.transform.right * h + _mainCam.transform.forward * v).normalized * Time.deltaTime * _speed;
+        //transform.position += (_mainCam.transform.right * h + _mainCam.transform.forward * v).normalized * Time.deltaTime * _speed;
+        _rigid.velocity = (_mainCam.transform.right * h + _mainCam.transform.forward * v);
+        _rigid.velocity = new Vector3(_rigid.velocity.x, 0, _rigid.velocity.z).normalized * _speed;
     }
 
     private void Rotate()
