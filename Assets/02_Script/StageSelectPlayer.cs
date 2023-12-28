@@ -17,7 +17,7 @@ public class StageSelectPlayer : MonoBehaviour
     private void Awake()
     {
         _mainCam = Camera.main;
-        transform.rotation = Quaternion.identity;
+        _mainCam.transform.rotation = Quaternion.identity;
     }
 
     private void Update()
