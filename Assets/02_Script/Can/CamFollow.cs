@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class CamFollow : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Can;
-    // Start is called before the first frame update
+    private const float maxYVel =30;
+    public float rotateSpeed = 0;
+
+    private float xVel, yVel;
+
     void Start()
     {
-        Can = GameObject.Find("CAN");
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Can.transform.position;
+
+
+        xVel += Input.GetAxisRaw("Mouse X") * rotateSpeed * Time.deltaTime;
+        yVel += Input.GetAxisRaw("Mouse Y") * rotateSpeed * Time.deltaTime;
+
+        yVel = Mathf.Clamp(yVel, -maxYVel, maxYVel);
+        var rotateVec = new Vector3(-yVel, xVel);
+        transform.eulerAngles = rotateVec;
+
+
     }
 }

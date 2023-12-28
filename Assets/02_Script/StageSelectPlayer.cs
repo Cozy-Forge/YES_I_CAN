@@ -9,7 +9,10 @@ using UnityEngine.SceneManagement;
 public class StageSelectPlayer : MonoBehaviour
 {
     private Camera _mainCam;
+    private Rigidbody _rigid;
     private float _xRotate, _yRotate;
+
+    [SerializeField] private GameObject _tooltip;
 
     [SerializeField] private float _rotateSpeed = 500.0f;
     [SerializeField] private float _speed = 5f;
@@ -17,7 +20,8 @@ public class StageSelectPlayer : MonoBehaviour
     private void Awake()
     {
         _mainCam = Camera.main;
-        transform.rotation = Quaternion.identity;
+        _rigid = GetComponent<Rigidbody>();
+        _mainCam.transform.rotation = Quaternion.identity;
     }
 
     private void Update()
@@ -30,11 +34,14 @@ public class StageSelectPlayer : MonoBehaviour
     private void Check()
     {
         RaycastHit hitInfo;
-        if (Physics.Raycast(_mainCam.transform.position, _mainCam.transform.forward, out hitInfo, _mainCam.farClipPlane, 1 << 10))
+        bool isHit = Physics.Raycast(_mainCam.transform.position, _mainCam.transform.forward, out hitInfo, 3 /*_mainCam.farClipPlane*/, 1 << 10);
+
+        _tooltip.SetActive(isHit);
+        if (isHit)  
         {
             if (hitInfo.transform.TryGetComponent<StageObject>(out StageObject so))
             {
-                so.RemainTime = 0.3f;
+                so.RemainTime = 0.1f;
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     Debug.Log(so.name);
@@ -49,7 +56,9 @@ public class StageSelectPlayer : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        transform.position += (_mainCam.transform.right * h + _mainCam.transform.forward * v).normalized * Time.deltaTime * _speed;
+        //transform.position += (_mainCam.transform.right * h + _mainCam.transform.forward * v).normalized * Time.deltaTime * _speed;
+        _rigid.velocity = (_mainCam.transform.right * h + _mainCam.transform.forward * v);
+        _rigid.velocity = new Vector3(_rigid.velocity.x, 0, _rigid.velocity.z).normalized * _speed;
     }
 
     private void Rotate()
