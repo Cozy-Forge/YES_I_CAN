@@ -61,13 +61,13 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (isHover)
         {
 
-            percent += Time.deltaTime * hoveringSpeed;
+            percent += Time.unscaledDeltaTime * hoveringSpeed;
 
         }
         else
         {
 
-            percent -= Time.deltaTime * hoveringSpeed;
+            percent -= Time.unscaledDeltaTime * hoveringSpeed;
 
         }
 
