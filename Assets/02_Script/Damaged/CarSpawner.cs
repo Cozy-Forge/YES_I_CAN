@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class CarSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _car;
+    [Header("Info")]
+    [SerializeField] private MoveObject _car;
     [SerializeField] private Vector3 _dir;
     [SerializeField] private float _carSpeed = 30f;
     [SerializeField] private float _carDeleteTime = 5f;
     [SerializeField] private float _carSpawnDelay = 2f;
+
+    [SerializeField] private bool _frontIsRight = false;
 
     private void Start()
     {
@@ -19,11 +22,14 @@ public class CarSpawner : MonoBehaviour
     {
         while(true)
         {
-            GameObject car = Instantiate(_car, transform.position, Quaternion.identity);
-            car.transform.forward = _dir.normalized;
+            MoveObject car = Instantiate(_car, transform.position, Quaternion.identity);
+            if(!_frontIsRight)
+                car.transform.forward = _dir.normalized;
+            else
+                car.transform.right = _dir.normalized;
             car.transform.parent = transform;
 
-            car.GetComponent<Rigidbody>().velocity = _dir * _carSpeed;
+            car.Go(_dir, _carSpeed);
             Destroy(car, _carDeleteTime);
 
             yield return new WaitForSeconds(_carSpawnDelay);
