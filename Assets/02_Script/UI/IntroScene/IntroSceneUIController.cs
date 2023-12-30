@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using TMPro;
-using Cinemachine;
+using UnityEngine.UI;
 
 public class IntroSceneUIController : MonoBehaviour
 {
@@ -19,13 +19,10 @@ public class IntroSceneUIController : MonoBehaviour
     [SerializeField] private Transform optionButtonRoot;
     [SerializeField] private Transform optionExitButton;
     [SerializeField] private Transform optionVoluemPanel;
+    [SerializeField] private Transform optionSfxVoluemPanel;
 
-    [Space]
-    [Header("PlayUI")]
-    [SerializeField] private GameObject _selectUI;
-
-    [SerializeField] private CinemachineVirtualCamera _vCam2;
-
+    private Slider optionVolumeSlider;
+    private Slider optionSfxVolumeSlider;
     private bool isControlled;
 
     private void Awake()
@@ -39,9 +36,9 @@ public class IntroSceneUIController : MonoBehaviour
         }
 
         optionVoluemPanel.position += new Vector3(1100, 0, 0);
+        optionSfxVoluemPanel.position += new Vector3(1100, 0, 0);
         optionExitButton.position -= new Vector3(1100, 0, 0);
         optionPanel.position -= new Vector3(1100, 0, 0);
-
 
         var buttons = titleButtonsRoot.GetComponentsInChildren<CustomButton>();
 
@@ -51,6 +48,32 @@ public class IntroSceneUIController : MonoBehaviour
             button.OnButtonClickEvent += HandleIntroButtonClick;
 
         }
+
+        optionSfxVolumeSlider = optionSfxVoluemPanel.GetComponentInChildren<Slider>();
+        optionVolumeSlider = optionVoluemPanel.GetComponentInChildren<Slider>();
+
+        optionVolumeSlider.onValueChanged.AddListener(HandleBGValueChanged);
+        optionSfxVolumeSlider.onValueChanged.AddListener(HandleSFXValueChanged);
+
+        optionSfxVolumeSlider.value = PlayerPrefs.GetFloat("SFX", 0.5f);
+        optionVolumeSlider.value = PlayerPrefs.GetFloat("Volume", 0.5f);
+
+
+    }
+
+    private void HandleSFXValueChanged(float arg0)
+    {
+
+        SoundManager.Instance.SFXVolume(arg0);
+        PlayerPrefs.SetFloat("SFX", arg0);
+
+    }
+
+    private void HandleBGValueChanged(float arg0)
+    {
+
+        SoundManager.Instance.BGSoundVolume(arg0);
+        PlayerPrefs.SetFloat("Volume", arg0);
 
     }
 
@@ -112,6 +135,10 @@ public class IntroSceneUIController : MonoBehaviour
         optionExitButton.DOLocalMoveX(-741 -1100, 0.4f).SetEase(Ease.OutSine);
         optionVoluemPanel.DOLocalMoveX(406 +1100, 0.4f).SetEase(Ease.OutSine);
 
+        yield return new WaitForSeconds(0.1f);
+
+        optionSfxVoluemPanel.DOLocalMoveX(406 + 1100, 0.4f).SetEase(Ease.OutSine);
+
         for (int i = 0; i < optionButtonRoot.childCount; i++)
         {
 
@@ -128,6 +155,10 @@ public class IntroSceneUIController : MonoBehaviour
         optionPanel.DOLocalMoveX(-610, 0.4f).SetEase(Ease.OutSine);
         optionExitButton.DOLocalMoveX(-741, 0.4f).SetEase(Ease.OutSine);
         optionVoluemPanel.DOLocalMoveX(406, 0.4f).SetEase(Ease.OutSine);
+
+        yield return new WaitForSeconds(0.1f);
+
+        optionSfxVoluemPanel.DOLocalMoveX(406, 0.4f).SetEase(Ease.OutSine);
 
         for (int i = 0; i < optionButtonRoot.childCount; i++)
         {
@@ -182,8 +213,6 @@ public class IntroSceneUIController : MonoBehaviour
 
         }
 
-        _vCam2.Priority = 11;
-        _selectUI.SetActive(true);
 
     }
 
