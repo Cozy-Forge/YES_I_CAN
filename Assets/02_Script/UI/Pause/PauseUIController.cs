@@ -1,5 +1,6 @@
 using DG.Tweening;
 using FD.Dev;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class PauseUIController : MonoBehaviour
     [SerializeField] private Transform settingRoot;
     [SerializeField] private Transform pausePanel;
     [SerializeField] private Image bg;
+    [SerializeField] private Slider volumeSlider;
+    [SerializeField] private Slider sfxSlider;
 
     private bool isPause = false;
 
@@ -37,6 +40,28 @@ public class PauseUIController : MonoBehaviour
         var set = bg.color;
         set.a = 0;
         bg.color = set;
+
+        volumeSlider.onValueChanged.AddListener(HandleBGValueChanged);
+        sfxSlider.onValueChanged.AddListener(HandleSFXValueChanged);
+
+        volumeSlider.value = PlayerPrefs.GetFloat("SFX", 0.5f);
+        sfxSlider.value = PlayerPrefs.GetFloat("Volume", 0.5f);
+
+    }
+
+    private void HandleSFXValueChanged(float arg0)
+    {
+
+        SoundManager.Instance.SFXVolume(arg0);
+        PlayerPrefs.SetFloat("SFX", arg0);
+
+    }
+
+    private void HandleBGValueChanged(float arg0)
+    {
+
+        SoundManager.Instance.BGSoundVolume(arg0);
+        PlayerPrefs.SetFloat("Volume", arg0);
 
     }
 
