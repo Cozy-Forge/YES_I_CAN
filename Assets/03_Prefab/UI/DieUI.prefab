@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2523451934357242245}
+  - component: {fileID: 1455991087024811878}
   m_Layer: 5
   m_Name: DieUI
   m_TagString: Untagged
@@ -38,6 +39,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1455991087024811878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2523451934357242246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71cc27116b0bbc4458f88b9a48bd04cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2523451934589976742
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +292,34 @@ PrefabInstance:
     - target: {fileID: 5483118758995566006, guid: c210776d64336034089b580e32ede753, type: 3}
       propertyPath: m_Name
       value: Restart
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1455991087024811878}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Restart
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c210776d64336034089b580e32ede753, type: 3}

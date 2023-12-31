@@ -91,6 +91,13 @@ public class IntroSceneUIController : MonoBehaviour
 
     }
 
+    public void GameExit()
+    {
+
+        Application.Quit();
+
+    }
+
     public void TitleUIShow(float waitTime)
     {
 

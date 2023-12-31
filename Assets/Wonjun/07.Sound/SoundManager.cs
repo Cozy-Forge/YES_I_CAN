@@ -47,13 +47,20 @@ public class SoundManager : MonoBehaviour
         _mixer.SetFloat("SFXvolume", Mathf.Log10(val) * 20);
     }
 
-    public void SFXPlay(string sfxName, AudioClip clip)
+    public void SFXPlay(string sfxName, AudioClip clip, Transform parnet = null)
     {
         GameObject go = new GameObject(sfxName + "Sound");
         AudioSource audioSource = go.AddComponent<AudioSource>();
         audioSource.outputAudioMixerGroup = _mixer.FindMatchingGroups("SFX")[0];
         audioSource.clip = clip;
         audioSource.Play();
+
+        if(parnet != null)
+        {
+
+            go.transform.SetParent(parnet);
+
+        }
 
         Destroy(go, clip.length);
     }

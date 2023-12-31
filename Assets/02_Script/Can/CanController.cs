@@ -15,6 +15,7 @@ public class CanController : MonoBehaviour
     public GameObject JumpEffect;
     public Transform EffectPos;
     public TMP_Text JumpTMP;
+    [SerializeField] private AudioClip sound;
 
     void Awake()
     {
@@ -30,6 +31,8 @@ public class CanController : MonoBehaviour
         {
             Vector3 forwardDirection = cam.transform.forward + Vector3.up;
             rb.AddForce(forwardDirection * ForcePower, ForceMode.VelocityChange);
+            rb.angularVelocity += forwardDirection + UnityEngine.Random.insideUnitSphere * 10;
+            SoundManager.Instance.SFXPlay("asdf", sound, transform);
 
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, 10);
             JumpCool = 2;
@@ -48,5 +51,9 @@ public class CanController : MonoBehaviour
 
     }
 
+    private void OnAnimatorMove()
+    {
+        
+    }
 
 }

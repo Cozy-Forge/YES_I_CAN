@@ -1440,6 +1440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8413114512143945405}
   - component: {fileID: 8413114512143945406}
+  - component: {fileID: 1964630936310258779}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -1486,6 +1487,18 @@ MonoBehaviour:
   bg: {fileID: 8413114511615861010}
   volumeSlider: {fileID: 8413114510468901205}
   sfxSlider: {fileID: 8413114511617432950}
+--- !u!114 &1964630936310258779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413114512143945404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71cc27116b0bbc4458f88b9a48bd04cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8413114510048429115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1608,6 +1621,34 @@ PrefabInstance:
     - target: {fileID: 5483118758995566006, guid: c210776d64336034089b580e32ede753, type: 3}
       propertyPath: m_Name
       value: RestartButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1964630936310258779}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Restart
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c210776d64336034089b580e32ede753, type: 3}
@@ -1739,6 +1780,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExitButton
       objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1964630936310258779}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SceneChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Intro
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c210776d64336034089b580e32ede753, type: 3}
 --- !u!224 &6209208991278870622 stripped
@@ -1868,6 +1941,34 @@ PrefabInstance:
     - target: {fileID: 5483118758995566006, guid: c210776d64336034089b580e32ede753, type: 3}
       propertyPath: m_Name
       value: ResumeButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8413114512143945406}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseUIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885046353677742053, guid: c210776d64336034089b580e32ede753, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c210776d64336034089b580e32ede753, type: 3}
